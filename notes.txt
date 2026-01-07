@@ -1,0 +1,121 @@
+7th Jan 2026
+============
+
+    -> What Is DevOps ?
+
+        -> DevOps is a set of "PRACTICES" that works to "AUTOMATE" and "INTEGRATE" 
+        the processes between Software Development (Dev) and IT Operations(Ops) teams.
+
+    -> Development Team
+
+        -> To "Build Applications" We need Roles Like 
+
+                -> Software Architect 
+                -> System Engineer
+                -> Software Developers 
+                -> Software Testers 
+                -> etc 
+
+    -> Operations Team
+
+        -> To "Build Infrastructure" & Maintain Applications, We need Roles Like 
+
+                -> System Admin 
+                -> Network Admin 
+                -> Cloud Admin 
+                -> Security Admin 
+                -> etc 
+
+    -> DevOps Engineer
+
+        -> DevOps Engineers will implement a set of "PRACTICES" using "TOOLS" so that 
+        organizations can build, test, and deploy [ DELIVERY LINE ] software 
+        faster and more reliably.
+
+    
+    -> DevOps PRACTICES     ==>     "TOOLS" 
+
+        -> Version Control Systems (VCS) ==> Git
+
+            -> For Tracking Code 
+
+            -> Happens Inside Developer Laptop - Local To Individual Developer
+
+        -> Source Code Management (SCM) ==> GitHub 
+
+            -> Store Multiple Versions Of Code 
+
+            -> Happens Inside Organization - Central to All Developer
+
+        -> Containerization ==> Docker 
+
+            -> To Get Acceleration (FASTER) 
+
+        -> Orchestration ==> Kubernetes  
+
+            -> To Get Reliability 
+            
+            -> Helps Run Applications Without Downtime (Run 24 X 7) - Production Environments 
+
+        -> Continuous Integration & Continuous Deployment (CI-CD) ==> GitHub Actions 
+
+            -> To Get Automation In Repetitive Tasks   
+
+    -> DevOps Prerequisites 
+
+        -> Application - Project
+
+            -> SDLC - Software Development Life Cycle 
+
+                -> Requirement -> Design -> Code -> "Build" -> Test -> Release -> "Deploy" 
+
+        -> Servers (AWS & AZURE) - Charges (4 INR Per Hour) 
+
+        -> Command Line Interface - CLI (Linux Commands)
+
+    -> As a DevOps Engineer You are responsible for     
+
+        -> Implement Automation
+
+        -> Implement Acceleration (Fastness)
+
+        -> Implement Reliability (Application Should Always Run)
+
+    
+    -> When we start building/developing a project 
+
+        -> SDLC 
+
+            -> The Software Development Life Cycle (SDLC) is a process followed by 
+            software development teams to design, develop and test high-quality software. 
+
+            -> The SDLC consists of multiple stages such as 
+
+                -> Requirement -> Design -> Code -> "Build" -> Test -> Release -> "Deploy" 
+
+                -> NOTE: From DevOps Context 
+
+                    -> Code -> "Build" -> Test -> "Deploy" 
+
+                    -> "Build" & "Deploy" Applications On Servers 
+
+        -> Requirement
+
+            -> Build LMS (Learning Management System): Manage Courses 
+
+                -> Three Tier App Architecture
+
+                    -> One thing the most visited websites have in common is that they are dynamic websites.
+                    Their development typically involves server-side coding, client-side coding and 
+                    database technology.
+
+            -> Most Popular Applications
+                
+                -> https://en.wikipedia.org/wiki/Programming_languages_used_in_most_popular_websites
+
+        -> Code 
+
+            -> Developers will use "Git" to track code and eventually "Push" Code to "GitHub" 
+
+        
+
