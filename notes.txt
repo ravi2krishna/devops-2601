@@ -226,3 +226,111 @@
             -> Install Visual Studio Code (VSCode) to Write Code 
             -> Implement(Start Coding) Issue / Feature Assigned to him 
         -> Developers Will Update Code To GitHub Repository
+
+
+12th Jan 2026
+==============
+
+    -> Implement(Start Coding) Issue / Feature Assigned to him 
+
+    -> Developers Will Update Code To GitHub Repository
+
+    -> Currently the Application is on GitHub 
+
+    -> Can customers / clients access the Application from Github ?
+
+        -> NO 
+
+    -> We need Servers To Host / To Deploy Applications so that 
+    customers / clients access the Application
+
+    -> Operations Related Work
+    
+    -> Servers 
+
+        -> A Server is a "computer system" that provides data or services 
+            to others computers, known as "clients" over a network.
+
+        -> Laptop can be used by one person at a time 
+        
+        -> Server can be used by multiple persons(clients) at a time 
+
+    -> Physical Server 
+
+        -> Physical Server Consists Of "Hardware" + "Operating System" (Linux OS - Ubuntu)
+
+        -> CPU(Processor) + RAM + HDD + N/W Card
+    
+    -> Server Softwares 
+
+        -> Web Server : Hosts and Serves Web Pages / Web Applications Over Internet 
+
+            -> Examples : Apache Web Server, Nginx Web Server, IIS Server etc 
+
+        -> Database Server : Hosts Application Data & Transactions
+
+            -> Examples : MySQL Server, Postgres Server, MS SQL Server etc 
+
+        -> Email Server : Software that sends, receives, and stores emails.
+
+            -> Examples : Postfix Server, SendMail, Send grid etc 
+
+
+    -> Where To get servers from ?
+
+        -> Purchase Server 
+
+            -> Purchasing Servers is QUITE COSTLY and from learning perspective we cannot
+                afford a server 
+
+            -> Rather than Purchasing Server, we want to "RENT SERVERS" 
+        
+        -> As per example discussed 
+
+            -> Buying Server == Buying Bike 
+
+            -> Renting Server == Renting Bike 
+
+            -> Renting Bike : Pay for how many kilometers you traveled 
+
+            -> Renting Server : Pay for how much you use i.e "PAY AS YOU GO" price model
+
+                -> 1 Server for 1 hour 
+                -> 1 Server for 5 hour 
+                -> 1 Server for 5 days 
+
+            -> Where can i rent bike ?
+
+                -> Ola, Uber, Rapido etc 
+
+            -> Where can i rent server ?
+
+                -> AWS, AZURE, GCP, OCI etc
+
+    -> Cloud Computing 
+
+        -> Cloud computing is the "on-demand" delivery of "IT resources" 
+        like servers, storage, and software over the "internet" 
+        on a "pay-as-you-go" basis.
+
+    -> In our course will implement servers on both "AWS" & "AZURE"
+
+        -> AWS Cloud - FREE TRAIL - 6 Months - $200
+
+        -> AZURE Cloud - FREE TRAIL - 1 Month - $200
+
+    
+    -> AWS Account Setup - LABS 
+        
+        Visit - https://aws.amazon.com/free
+
+    -> AZURE Account Setup - LABS
+        
+        Visit - https://azure.microsoft.com/en-us/free/
+
+    -> Following Details Required - Cloud Setup
+
+        Unique Email ID
+        Unique Mobile Number
+        Unique PAN CARD
+        Unique Debit / Credit Card
