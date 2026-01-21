@@ -533,3 +533,233 @@
                     -> README.md  img_avatar2.png  index.html (Success)
                 
                 -> Browse Public IP 
+
+21st Jan 2026
+==============
+
+    -> AZURE Server Setup 
+
+        -> Azure Virtual Machines (VM's) is a part of Azure's cloud-computing platform, 
+        Microsoft, that "allows users to rent virtual computers(servers)" 
+        on which to run their "own computer applications".
+
+        -> Server                   ==> Azure Virtual Machine (VM)
+        -> Server Name              ==> VM Name 
+        -> Operating System         ==> Image ( Linux Ubuntu 22.04)
+        -> CPU + RAM                ==> Sizes (b1s, b2s etc)           
+        -> Login / Authentication   ==> Key Pairs (Public Key & Private Key)
+        -> Network                  ==> VNET (Virtual Network)
+        -> Firewall                 ==> Network Security Group (Rules: Protocol, Port, Source)
+        -> Storage (Hard Disk)      ==> Disk is 30 GB 
+
+        -> Login To AZURE 
+
+            -> http://portal.azure.com/
+
+
+    -> How To Connect With Server ?
+
+        -> SSH Client Softwares 
+
+            -> A software program which uses SSH to connect with remote linux server 
+
+            -> From Online 
+                
+                -> https://ssheasy.com/
+
+            -> From Laptop / System Use any one of the below Software 
+
+                -> GitBash (recommended) it provides ssh & also git 
+                -> Terminal 
+                -> Putty 
+                -> etc 
+
+            -> Open GitBash / Terminal etc 
+
+                -> Navigate to location where private key is present i.e pem file 
+                    -> cd downloads 
+                -> Set pem file permissions to READ only 
+                    -> chmod 400 key 
+                -> Use below ssh command to connect with server 
+                    -> ssh -i identity_file/private_key username@public-ip-address 
+
+    
+    -> NOTE: We are using Linux Servers, which has only CLI (Command Line Interface)
+
+    -> CLI - Command Line Interface
+
+        -> CLI is a powerful tool for interacting with servers 
+            through "text based commands" 
+
+        -> CLI is very helpful in Automating Repetitive Tasks 
+
+    
+    -> Requirement From Customer 
+
+        -> Create 100 Text files 
+        -> Assume you don't have any CLI knowledge 
+        -> Then we are left with GUI - Graphical User Interface 
+            -> 1 text file creation - 3 seconds 
+            -> 100 text file creation - 300 seconds (5 mins)
+            -> 100000 text file creation - 300000 seconds (5000 mins) 
+
+    -> Resolving Requirement From Customer Using CLI 
+
+        -> touch file-{1..100}.txt
+
+    -> Hardware & System Software(OS) Commands 
+
+        -> CPU / Processor Info 
+
+            -> cat /proc/cpuinfo 
+        
+        -> RAM Info 
+
+            -> free -m 
+
+        -> Disk Info 
+
+            -> df -h 
+
+        -> Network  Info 
+
+            -> ip address 
+
+    -> System Software (OS)
+
+        -> uname 
+        -> cat /etc/os-release 
+
+    -> Check Running Processes 
+
+        -> ps -ef 
+        -> htop (to quit click q on keyboard)
+
+    -> Once Application is Developed 
+
+    -> How Customers Will Access Application ?
+
+        -> Customers Will Access Application Via Servers 
+
+    
+    -> To Host / Deploy Applications, Follow Below Approach 
+
+        -> Create Server 
+
+        -> Install Appropriate Softwares On Servers 
+
+        -> Host / Deploy Application On Server 
+
+        NOTE: Above Activities are Operations Oriented 
+
+    -> Web Server 
+
+        -> A web server is computer software [ Nginx HTTP Server ] 
+        and underlying hardware [ AWS Instance / AZURE VM ] 
+        that accepts requests via HTTP (port 80) 
+        to distribute web content.
+
+        -> NOTE: All Servers that host websites must have web server program.
+
+    
+    -> Below Work Is More Of System Admin Work 
+
+        -> As Web Server Works On HTTP with Port 80, update the Firewall with HTTP 
+
+    -> Commands to work with Web Application Deployment 
+
+    -> Web Server runs on port 80 
+
+    -> Commands to check, which port is in use by which service 
+
+        -> sudo ss -ntpl 
+
+    -> Install Web Server i.e Nginx HTTP Server 
+
+        -> sudo apt update -y 
+        -> sudo apt install nginx -y 
+        -> sudo ss -ntpl 
+    
+    -> Test Web Server 
+
+        -> Browse Public IP 
+
+    -> For Web Servers, we have DocumentRoot i.e location 
+        where web pages will be loaded from /var/www/html 
+
+        -> ls /var/www/html 
+
+        -> index page is called Landing Page Of Application
+
+        -> cat /var/www/html/index.nginx-debian.html
+
+        -> Repo URL - https://github.com/ravi2krishna/login-2601.git
+
+        -> Clone Repo Using CLI 
+
+            -> sudo git clone <url> <destination_directory>
+
+            -> sudo git clone https://github.com/ravi2krishna/login-2601.git /var/www/html 
+
+                -> fatal: destination path '/var/www/html' already exists and is not an empty directory.
+
+            -> Clean Up DocumentRoot
+
+                -> ls /var/www/html/
+                
+                -> sudo rm /var/www/html/index.nginx-debian.html
+
+                -> ls /var/www/html/
+
+                -> sudo git clone https://github.com/ravi2krishna/login-2516.git /var/www/html 
+
+                -> ls /var/www/html/
+
+                    -> README.md  img_avatar2.png  index.html (Success)
+                
+                -> Browse Public IP 
+
+        -> pwd : present working directory
+
+        -> ls : list directory / folder content 
+
+        -> man : manual pages for commands you use (helper utility to know about command)
+
+        -> mkdir : create directory 
+
+        -> touch : create empty file 
+
+        -> cd : change directory 
+
+        -> cat : file content viewer (text, pdf, script, sql, conf etc)
+
+        -> vi / vim (visual editor) is a text editor in linux comes pre-installed 
+
+    -> vi modes 
+
+        -> vi existing_file_name 
+
+            -> vi file.txt 
+
+            -> i - insert mode (insert data)
+            -> esc - command mode 
+            -> :w - write data 
+            -> :wq - write data & quit 
+
+        -> vi new_file (create file)
+
+    -> Shell Scripting 
+
+        -> A shell script is a computer program, or text file, that contains 
+        a sequence of commands for a Unix-based operating system's shell 
+        (command-line interpreter) to execute automatically. 
+        It functions as a program to automate repetitive tasks that a user 
+        would otherwise have to type manually into the terminal one command at a time. 
+
+    -> wget https://raw.githubusercontent.com/ravi2krishna/login-2601/refs/heads/main/deploy.sh
+
+    -> ls 
+
+    -> sh deploy.sh
+
+    
