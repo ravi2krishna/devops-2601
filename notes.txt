@@ -1135,3 +1135,189 @@
             -> Check Application in Browser
 
     -> NOTE: Terminate Server Once Lab is done 
+
+
+28th Jan 2026
+==============    
+
+    -> Project - 1 
+
+        -> Code -> Build -> Test -> Deploy 
+
+            -> Git & GitHub -> NPM -> SonarQube -> Servers 
+    
+    -> NOTE: Next Goal is to Implement DevOps Practices / Process On Above Project 
+
+    -> DevOps is a set of PRACTICES that works towards the 
+        "AUTOMATION" and "INTEGRATION" of the processes between 
+        Software Development (Dev) and IT (Ops) teams, 
+        so that organizations can "BUILD", "TEST" and "DEPLOY" softwares/applications 
+        "FASTER" and more "RELIABLE"
+
+    -> Whole Project - 1 Took 2-3 Hours 
+
+    -> From DevOps Teams, Organizations are looking for Acceleration i.e "FASTER"
+
+        -> For our earlier experience, using SonarQube(45 Mins), traditionally 
+
+        -> Why shouldn't you Apply Docker on Whole Application Process ??? 
+
+            -> Whole Application Process (Dev & Ops) -> Traditionally Took 2-3 Hours
+
+            -> Whole Application Process (Dev & Ops) -> Docker Took 5-10 mins 
+
+    -> NOTE: To Accelerate Development & Deployment process, we use "Containerization" Practice
+
+    
+    -> Project - 2
+
+        -> Implement Acceleration i.e FASTNESS using "Containerization" Practice
+
+    -> Containerization
+
+        -> Containerization is one of the practices in devops, which provides 
+
+            -> "Lightweight" and "Efficient" way of running applications 
+            
+            -> Promotes "Faster Deployments" and "Portability" for applications
+
+        -> Containerization is implemented by software/tool "DOCKER" 
+
+    -> Container 
+
+        -> An object for holding or transporting something 
+
+            -> https://upload.wikimedia.org/wikipedia/commons/d/df/Container_01_KMJ.jpg
+
+        -> In terms of software development, a container is an object 
+        for holding or transporting/shipping applications.
+
+            -> https://cdn.prod.website-files.com/67615512eed3697e5e735df6/67c1d375b94ef6458106170b_vrGMCnHTQY2TKkXLNFbx.jpeg
+
+    -> Monolithic Architecture
+
+        -> Monolithic architecture is a software design pattern where the entire application 
+        is built as a "single, indivisible unit".
+
+    -> Micro Services Architecture
+
+        -> Microservices Architecture is a software development approach that involves 
+        building "small, independent services" that work together to create a larger application.
+    
+    -> https://miro.medium.com/v2/resize:fit:1400/1*rW3dglWAkRhnPpMrnacQ-g.png
+
+    -> NOTE: As DevOps Engineer, Deploying Micro Sized Applications(Micro Services) on Containers 
+    is our primary work on projects 
+
+    
+    -> Docker Architecture
+
+        -> Docker Client (CLI)  
+
+        -> Docker Server (Daemon)
+
+        -> Docker Registry (https://hub.docker.com)
+
+        -> Docker Images
+
+        -> Docker Containers 
+
+        -> https://assets.bytebytego.com/diagrams/0414-how-does-docker-work.png
+
+
+        -> Python is Programming Language 
+        -> SonarQube is Code Analysis Tool 
+        -> Ubuntu is Operating System 
+        -> Postgres is Database 
+
+        -> NOTE: All Above are present in Docker Registry (https://hub.docker.com)
+
+        -> NOTE: In Terms of Docker all the above are considered as "Docker Images"
+
+        -> Python is an Image
+        -> SonarQube is an Image
+        -> Ubuntu is an Image
+        -> Postgres is an Image
+
+        -> NOTE: All the above images are stored in Docker Registry (https://hub.docker.com)
+        like Different Applications in Play Store
+
+    -> Docker Containers are Runtime of images 
+
+            -> Images are like Templates / Blueprints
+
+            -> Containers are Real Entities We run
+
+            -> NOTE: To create a container, image is mandatory 
+
+        -> A container is an object for holding or transporting/shipping applications.
+
+            -> To Create Container, we use Docker Client (CLI) and make a request 
+
+            -> DevOps Engineer -> Makes Request For Creating Container Using Docker Client (CLI)
+
+                -> Docker Client (CLI) -> Sends Request To Docker Server (Daemon) -> Daemon Connects To Docker Registry
+
+                    -> Fetch Docker Images to Server(compute) -> Using Image Daemon Runs/Creates Containers
+
+
+        -> The Daemon/Service is responsible for managing Docker objects 
+            such as images, containers, and networks. All the heavy lifting is done by daemon.
+        
+        -> The client sends commands to the daemon and receives output. 
+        
+        -> The registry stores Docker images and allows them to be shared among users and systems.
+
+        -> A Docker image is a lightweight, standalone, and executable package 
+            that includes everything needed to run the desired software application.
+
+        -> A container in Docker allows you to run an application with all the dependencies it needs. 
+            To create a container we need Docker Image.
+
+        -> NOTE: Without Proper Understanding Of Docker we cannot work with "Kubernetes"
+
+        -> NOTE: Prerequisite Of Kubernetes is Docker
+
+    
+    
+    -> Docker Setup 
+
+        -> AWS 
+            
+            -> “t2.medium instance” i.e 4 GB RAM - 2 CPU’s on AWS, with 20 GB as Storage.  
+                
+        -> AZURE 
+            
+            -> B2S, i.e 4 GB RAM - 2 CPU’s on AZURE, with 30 GB as Storage
+
+        -> Add Following Rules in Security Groups / Network Security Groups
+            -> 22, 80, 32768-61000, 8080-9090
+
+                -> 32768-61000 - Docker Pre defined port range(*)   
+                -> 8080-9090 - User defined port range (Based on your Requirement)
+
+        -> Setup Docker 
+
+            -> docker 
+            -> wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            -> docker
+
+        -> Check Docker Images On Host 
+
+            -> docker image ls
+            -> permission denied
+
+        -> To Overcome Permissions issues, add ubuntu user to docker group 
+            
+            -> sudo usermod -aG docker ubuntu
+            -> newgrp docker
+
+        -> Check Docker Containers On Host 
+
+            -> docker container ls -a 
+
+        -> Create Docker Containers On Host 
+
+            -> docker container run --name c1 <image>
+
+            -> docker container run --name c1 hello-world 
