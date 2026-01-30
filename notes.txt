@@ -1321,3 +1321,132 @@
             -> docker container run --name c1 <image>
 
             -> docker container run --name c1 hello-world 
+
+30th Jan 2026
+==============
+
+    -> To Run Containers we have Modes 
+
+        -> No Mode 
+
+            -> Containers are in exit state i.e stopped 
+
+            -> docker container run --name c1 ubuntu
+
+                -> Name Conflict & Latest Tag 
+
+            -> docker container run --name c3 ubuntu
+
+        
+        -> Interactive Mode / Foreground Mode (development / troubleshoot)
+
+            -> docker container run -it --name c4 ubuntu
+
+            -> cat /etc/os-release
+
+            -> Verify By Opening One More Sessions for Server 
+
+                -> docker container ls -a
+
+            -> NOTE: In Interactive Mode Containers will stop, once we come out of the container
+
+            -> NOTE: Containers are "Lightweight" and "Efficient" 
+
+                -> docker container run -it --name c5 ubuntu:22.04 
+
+                -> cat /etc/os-release
+
+                -> Run following command on host 
+
+                    -> ps -ef 
+
+                -> Run following command on c5 container 
+
+                    -> ps -ef 
+
+                    -> ssh 
+
+                    -> git
+
+                    -> ss 
+
+            -> NOTE: As we have Microservices, we need micro sized Environments 
+            i.e containers using images which has only what is required 
+
+        
+        -> Detached Mode / Background Mode (Production)
+
+            -> docker container run -dt --name c6 ubuntu:22.04 
+
+            -> docker container ls -a
+
+            -> NOTE: In Detached Mode Containers will never stop, unless we explicitly stop
+
+            -> docker container exec <container-name> <command> 
+
+            -> docker container exec c6 cat /etc/os-release
+
+            -> docker container exec c6 ps -ef 
+
+            -> docker container run -it --name c7 ubuntu:22.04 
+
+            -> docker container exec -it c6 bash 
+
+                -> exit 
+
+    
+    -> Container Management Commands 
+
+        -> Server: Create / Start / Stop / Remove 
+
+        -> Containers: Create / Start / Stop / Remove 
+
+            -> docker container rm <container-name>
+            -> docker container rm <container-id>
+
+            -> docker container stop <container-name>
+
+            -> docker container start <container-name>
+
+            -> docker container rm -f <container-name>
+
+        -> Another Approach To Create Containers 
+
+            -> docker pull ubuntu:25.04 
+
+            -> docker container create -it --name c10 ubuntu:25.04 
+            -> docker container start --attach -i c10
+
+
+    -> Goal: Run Web Application In Container, like we did in Server / VM  
+
+        -> Procedure in Server / VM 
+
+            -> Create Server / VM 
+            -> Update The System 
+            -> Install Nginx Web Server 
+            -> Fetch Application Code
+            -> Deploy Application On Nginx Web Server 
+
+        -> Procedure in Container (Why) 
+
+            -> NOTE: Containers are "Lightweight" and "Efficient" 
+
+            -> docker container run -dt --name web-app ubuntu:22.04 
+            -> docker container ls -a
+            -> ss -ntpl 
+            -> docker container exec -it web-app bash 
+            -> ss -ntpl 
+            -> apt update -y 
+            -> apt install iproute2 -y 
+            -> ss -ntpl 
+            -> apt install nginx -y 
+            -> service nginx start 
+            -> ss -ntpl 
+
+            -> Check properties Of container using 
+
+                -> docker container inspect web-app
+                    -> "IPAddress": "172.17.0.2"
+
+                -> curl 172.17.0.2
