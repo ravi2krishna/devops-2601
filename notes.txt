@@ -1817,3 +1817,265 @@
             -> Then you can run the container using the image built for confirmation 
 
             -> https://miro.medium.com/v2/1*eh-tX75FFzQffFhCfCZaMA.png
+
+
+6th Feb 2026
+==============
+
+    -> Dockerize Login Application
+
+        -> ls 
+        -> git clone https://github.com/ravi2krishna/login-2601.git
+        -> ls 
+        -> cd ~/login-2601
+        -> ls 
+        -> ls Dockerfile 
+        -> docker build -t username_docker_hub/image_name . 
+        -> Create Account On Docker Hub 
+        -> docker build -t ravi2krishna/login-2601 . 
+            -> ERROR: failed to build: open Dockerfile: no such file or directory
+        -> touch Dockerfile
+        -> ls Dockerfile
+        -> docker build -t ravi2krishna/login-2601 . 
+            -> ERROR: failed to build: failed to solve: the Dockerfile cannot be empty
+        -> cat Dockerfile
+            -> please build image
+        -> docker build -t ravi2krishna/login-2601 . 
+            -> ERROR: failed to build: dockerfile parse error on line 1: 
+            unknown instruction: please
+
+    -> NOTE: To Build Docker Images, we need to follows Docker Instructions only 
+
+    -> Docker Instructions / Docker Directives 
+
+        FROM — set base image
+        COPY — copy files to image
+        RUN — execute command in container
+        WORKDIR — set working directory
+        VOLUME — create mount-point for a volume
+        CMD — set executable for container
+        EXPOSE — set port number 
+        ENV — set environment variable
+
+    -> NOTE: Check Nginx Official page of docker hub - https://hub.docker.com/_/nginx
+
+    -> cat Dockerfile
+        # - Means Commnet, ignored by docker
+        # FROM - To Set Base Functionality
+        FROM nginx
+
+        # COPY - To Copy Files from host to above image
+        COPY . /usr/share/nginx/html
+    
+    -> docker image ls 
+    -> docker build -t ravi2krishna/login-2601 . 
+    -> docker image ls 
+    
+    -> docker container run -dt --name login-app -p 8080:80 ravi2krishna/login-2601
+    -> docker container ls -a
+    -> Browse ip address of server
+
+    -> Currently the custom image is on host, to get Portability Upload /  Push
+    image to Docker Hub 
+
+        -> In Docker Hub, create Token 
+        -> Follow the commands given 
+            -> docker login -u ravi2krishna
+            -> paste token 
+        -> docker push ravi2krishna/login-2601
+        -> NOTE: Verify the image in Docker Hub 
+    
+    -> NOTE: Remove all containers and all images and test login app by 
+    Creating Container Using Image available in Docker Hub ravi2krishna/login-2601
+
+        -> docker container rm -f $(docker container ps -aq)
+        -> docker container ls -a
+        -> docker image ls
+        -> docker image rm -f $(docker image ls -aq)
+        -> docker image ls
+        -> remove application code too 
+        -> cd ~
+        -> rm -rf login-2601
+        -> ls 
+    
+    -> NOTE: If below command works and loads application in Browser,
+    We have successfully created custom image 
+
+        -> docker container run -dt --name login-app -p 8080:80 ravi2krishna/login-2601
+
+    -> NOTE: New Requirements Came -> New Code -> Rebuild Image with tags -> Create Container
+
+    -> New Requirement
+
+        -> Student Login Form 
+        -> Trainer Login Form 
+        -> Admin Login Form 
+
+        -> Created New branches like Student, Trainer & Admin, 
+        made code changes and pushed to Github 
+
+    -> Student Release 
+
+        -> git clone -b student https://github.com/ravi2krishna/login-2601.git
+        -> cd ~/login-2601
+        -> docker image ls
+            -> ravi2krishna/login-2601:"latest"
+        -> docker build -t ravi2krishna/login-2601:student . 
+        -> docker image ls
+        -> docker push ravi2krishna/login-2601:student
+        -> docker container run -dt --name student-login-app -p 8081:80 ravi2krishna/login-2601:student 
+        -> docker container ls -a 
+
+    -> Trainer Release 
+
+        -> git clone -b trainer https://github.com/ravi2krishna/login-2601.git
+        -> cd ~/login-2601
+        -> docker image ls
+            -> ravi2krishna/login-2601:"latest"
+        -> docker build -t ravi2krishna/login-2601:trainer . 
+        -> docker image ls
+        -> docker push ravi2krishna/login-2601:trainer
+        -> docker container run -dt --name trainer-login-app -p 8082:80 ravi2krishna/login-2601:trainer 
+        -> docker container ls -a 
+
+    
+    -> Now we are ready to Dockerize LMS Application 
+
+        -> LMS Application Deployment Process is 2-3 Hours 
+
+        -> Our Goal for project 2 is to Accelerate Process i.e Deployment Process is 2-3 Mins 
+
+    -> Dockerize LMS Application / Dockerize Any Three Tier Architecture Application
+
+        -> REACTJS + Nodejs + Postgres
+        -> Before beginning with project clean up existing resources 
+            -> docker container rm -f $(docker container ps -aq)
+        
+        -> sudo ss -ntpl
+            -> No Ports 80, 8080, 5432 
+
+        -> Setup Postgres Database Using Docker 
+
+            -> docker container run -dt --name lms-db -e POSTGRES_PASSWORD=Login@123 postgres 
+            -> docker container ls -a 
+
+        -> Setup Nodejs Environment Using Docker 
+
+            -> docker container run -dt --name t1 node:22 
+            -> docker container ls -a 
+            -> docker container exec t1 node -v 
+            -> docker container exec t1 npm -v 
+
+        -> Steps To Build Custom LMS Backend Image 
+
+            -> ls
+            -> cd ~
+            -> git clone -b dev https://github.com/ravi2krishna/lms-v1.git 
+            -> ls 
+            -> cd ~/lms-v1/api
+            -> vi .env 
+                MODE=dev
+                PORT=8080
+                DATABASE_URL=postgresql://postgres:db_password@localhost:5432/postgres
+            
+            -> docker container inspect lms-db
+                -> update the ip of lms-db container in .env file 
+
+            -> vi .env 
+                MODE=dev
+                PORT=8080
+                DATABASE_URL=postgresql://postgres:Login@123@172.17.0.2:5432/postgres
+            
+            -> rm Dockerfile 
+                -> (old existing Dockerfile we removed)
+            
+            -> vi Dockerfile 
+
+                # Base Image
+                FROM node:22
+
+                # RUN - runs commands
+                RUN mkdir /backend
+
+                # WORKDIR - set path as working directory
+                WORKDIR /backend
+
+                # COPY - copy code
+                COPY . /backend
+
+                # RUN - Build Related Commands
+                RUN npm install
+                RUN npx prisma generate
+                RUN npx prisma db push
+                RUN npm run build
+
+                # Start Application
+                # RUN node build/index.js
+                CMD ["node","build/index.js"]
+
+
+            -> docker build -t ravi2krishna/lms-be . 
+            -> docker image ls 
+            -> docker container run -dt --name lms-be -p 8080:8080 ravi2krishna/lms-be 
+            -> docker container ls -a 
+
+            -> Verify Backend Status 
+
+            -> Verify with Browser - http://public-ip:8080/api  
+
+            -> NOTE: If you get below message, backend deployment is success   
+            
+                {"message":"success","mode":"dev"}
+
+            -> docker push ravi2krishna/lms-be 
+
+
+        -> Steps To Build Custom LMS Frontend Image 
+
+            -> cd ~/lms-v1/webapp/
+
+            -> rm Dockerfile 
+                -> (old existing Dockerfile we removed)
+
+            -> vi .env 
+
+                VITE_API_URL=http://public-ip:8080/api
+
+            -> vi Dockerfile
+
+                # Base Image
+                FROM node:22 AS build
+
+                # RUN - runs commands
+                RUN mkdir /frontend
+
+                # WORKDIR - set path as working directory
+                WORKDIR /frontend
+
+                # COPY - copy code
+                COPY . /frontend
+
+                # RUN - Build Related Commands
+                RUN npm install
+                RUN npm run build
+
+                # Deploy Application On Nginx
+                FROM nginx
+
+                # COPY
+                COPY --from=build /frontend/dist /usr/share/nginx/html
+
+            -> docker build -t ravi2krishna/lms-fe . 
+            -> docker image ls 
+            -> docker container run -dt --name lms-fe -p 80:80 ravi2krishna/lms-fe 
+            -> docker container ls -a 
+
+            -> Verify Frontend with Browser - http://public-ip:80
+
+            -> docker push ravi2krishna/lms-fe 
+
+    -> NOTE: In future i want to run LMS Applicable
+
+        -> docker container run -dt --name lms-db -e POSTGRES_PASSWORD=Login@123 postgres 
+        -> docker container run -dt --name lms-be -p 8080:8080 ravi2krishna/lms-be 
+        -> docker container run -dt --name lms-fe -p 80:80 ravi2krishna/lms-fe 
