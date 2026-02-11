@@ -2326,3 +2326,134 @@
             -> kubectl delete pod nginx-pod
 
             -> kubectl get pods 
+
+
+10th Feb 2026
+==============
+
+    -> Representing k8s objects using CODE (YAML)
+
+    -> YAML 
+
+        -> YAML is a human-readable data serialization language. 
+        It is commonly used for "configuration files" (k8s) and in applications 
+        where data is being stored or transmitted.
+
+        -> YAML focuses on USER FRIENDLINESS & EASY READABILITY
+
+            -> https://thedeveloperstory.com/wp-content/uploads/2021/12/yaml-syntax-1024x512.png
+
+        -> YAML is used to store information about different k8s objects 
+        pods, replicasets, deployments etc
+
+        -> YAML in k8s 
+
+            -> Simple Key Values 
+
+            -> Dictionaries: Set Of Key Values 
+
+            -> Lists: Multiple Items 
+
+            -> Combinations Of above 
+
+                -> https://developer.ibm.com/tutorials/yaml-basics-and-usage-in-kubernetes/
+
+    -> NOTE: Every k8s object has 4 Top Level items in yaml script 
+    
+        -> apiVersion
+        -> kind
+        -> metadata
+        -> spec 
+
+    -> Get YAML Definition for k8s objects 
+
+        -> Approach 1: https://kubernetes.io/docs/concepts/workloads/pods/
+
+        -> Approach 2: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#pod-v1-core
+
+        -> Approach 3: Using commands 
+
+            -> kubectl explain pod
+
+    -> Pod Using YAML 
+
+        -> Create Pod Definition (pod.yaml)
+
+        -> kubectl get pods 
+
+        -> kubectl apply -f pod.yaml 
+
+        -> kubectl get pods 
+            
+        -> kubectl exec nginx-pod -- cat /usr/share/nginx/html/index.html  
+
+        -> kubectl describe pod nginx-pod
+
+        -> kubectl delete pod nginx-pod
+
+        -> kubectl get pods 
+
+        -> NOTE: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#pod-v1-core
+
+        -> Warning: It is recommended that users create Pods only through a Controller, 
+        and not directly.
+
+        -> PODS are ephemeral in nature
+
+        -> Pods are not designed to run forever
+
+        -> Pods do not "heal" or "repair" themselves
+
+    
+    -> Replicaset Object 
+
+        -> Replica Set is often used to guarantee the "availability" of pods 
+
+        -> Replica Set manages pod lifecycle
+
+        -> Replicaset helps you achieve High Availability 
+
+        -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#replicaset-v1-apps
+
+        -> Warning: In many cases it is recommended to create a "Deployment" instead of ReplicaSet.
+
+        -> NOTE: ReplicaSets Don't Allow Updates 
+
+    -> Deployment Object
+
+        -> A deployment provides "updates" for pods and replicasets.
+
+        -> NOTE: No Warning for Deployment, this is the reason in real world 
+                We never create pods & replicasets directly.
+                We use deployments in real world to manage pods & replicasets.
+
+            -> Deployment -> ReplicaSet -> Pods 
+
+            -> Deployment(updates) -> ReplicaSet(availability) -> Pods(application)
+
+        -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#deployment-v1-apps
+
+        -> Remove existing replicaset to test 
+
+            -> kubectl delete replicaset nginx 
+
+            -> kubectl get replicasets
+
+            -> kubectl get pods 
+
+    
+    -> Service Object
+
+        -> A service is an object that acts as an endpoint, which you use to access the pods.
+
+            -> NodePort         -> access over internet not for production (for minikube)
+            -> Cluster IP       -> access within intranet (private communication) (api to db)
+            -> LoadBalancer     -> access over internet provided by cloud for production
+            -> ExternalName     -> For Doamin Name Forwarding 
+
+        -> https://assets.bytebytego.com/diagrams/0005-4-k8s-service-types.png
+
+        -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#service-v1-core
+
+        
+
