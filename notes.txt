@@ -2224,7 +2224,7 @@
             -> B2S, i.e 4 GB RAM - 2 CPU’s on AZURE, with 30 GB as Storage   
 
         -> Add Following Rules in Security Groups / Network Security Groups
-            -> 22, 80, 31000-32767
+            -> 22, 80, 30000-32767
 
     -> In Minikube We need to do setup Manually, but in Production vendors provide the Setup 
 
@@ -2456,4 +2456,58 @@
         -> https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.35/#service-v1-core
 
         
+16th Feb 2026
+==============
 
+    -> NodePort Service
+
+        -> You can contact the NodePort Service, from outside (www) the cluster, 
+            by requesting <NodeIP>:<NodePort>
+
+            -> This is similar to docker using -P (32768 - 61000)
+
+            -> In k8s we use (30000 - 32767)
+
+        -> NOTE: In Docker We have port Forwarding, likewise we have 
+        Kubernetes NodePort Service
+
+    -> Labels & Selectors
+
+        -> Labels: Labels are key/value pairs that are attached to objects.  
+
+        -> Selectors: Using a label selector, we can identify a set of objects.
+
+        -> https://kubernetes.io/docs/tutorials/kubernetes-basics/public/images/module_04_labels.svg
+
+        -> NOTE: Whatever the label we have in the pod definition, 
+                    the same should be in "matchLabels" section
+
+        -> kubectl get services 
+
+        -> kubectl port-forward --address 0.0.0.0 service/nginx-service 30000:80
+
+    
+    -> NOTE: In Docker We have Volumes for data management, likewise we have 
+    Kubernetes Persistent Volume 
+
+    -> Persistent Volumes - PV 
+
+        -> A PersistentVolume (PV) is a piece of "storage" in the cluster
+
+        -> PersistentVolume represents storage independent of pods 
+
+            -> How volumes are independent of containers 
+
+        -> PersistentVolumeClaim - PVC
+
+            -> A PersistentVolumeClaim is a request for storage by a pod
+        
+        -> Storage Class
+
+            -> A StorageClass in Kubernetes defines the type of storage to use 
+
+        -> NOTE: 
+            
+            -> Pod -> Volume Claim -> Persistent Volume -> Physical Storage (/mnt/data) 
+
+        -> https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
