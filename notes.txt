@@ -2511,3 +2511,78 @@
             -> Pod -> Volume Claim -> Persistent Volume -> Physical Storage (/mnt/data) 
 
         -> https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
+
+
+18th Feb 2026
+==============
+
+    -> Namespaces 
+
+        -> In Kubernetes, namespaces provide a mechanism for isolation
+
+        -> Like we have branches in git, we have namespaces in kubernetes 
+
+        -> https://miro.medium.com/v2/resize:fit:1200/1*1zWBdgIgpUjRReDzLHt5Dg.png
+
+        -> https://kubernetes.io/docs/tasks/administer-cluster/namespaces/#creating-a-new-namespace
+
+        -> kubectl get ns 
+
+        -> kubectl get namespace  
+
+        -> kubectl get pods
+
+        -> kubectl get pods -n kube-system
+
+        -> kubectl apply -f dev-namespace.yaml
+
+        -> kubectl get ns 
+
+        -> kubectl get pods -n dev
+
+        
+
+    -> Auto Scaling 
+
+        -> In Kubernetes, you can automatically scale a workload using a HorizontalPodAutoscaler (HPA)
+
+        -> https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/
+
+        -> kubectl get pods -n kube-system
+
+        -> minikube addons enable metrics-server
+
+        -> kubectl get pods -n kube-system
+
+            -> requests: cpu: 200m
+
+            -> 1000 milli cpu = 1 cpu 
+            
+            -> The container is asking for 200 milli cups to be "reserved" 
+
+            -> limits: cpu: 500m
+
+            -> The container can use upto 500 milli cups
+
+        -> kubectl get hpa
+
+        -> kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+
+        -> kubectl get hpa
+
+        -> kubectl get hpa -w 
+
+        -> kubectl run -i --tty load-generator --rm --image=busybox:1.28 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://php-apache; done"   
+
+        -> kubectl get hpa -w 
+
+        -> control + c 
+
+        -> kubectl get hpa -w 
+
+
+    -> Next we want to Deploy LMS Project On Kubernetes Production Environment
+
+    -> NOTE: Minikube is great for learning, but it is "not designed for running production workloads".
+
+    -> AWS EKS (Elastic Kubernetes Service) Production Cluster 
