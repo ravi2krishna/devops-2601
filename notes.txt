@@ -2586,3 +2586,59 @@
     -> NOTE: Minikube is great for learning, but it is "not designed for running production workloads".
 
     -> AWS EKS (Elastic Kubernetes Service) Production Cluster 
+
+
+20th Feb 2026
+==============
+
+    -> AWS EKS Production Cluster 
+
+        -> Create Master 
+
+        -> Create Worker Node (Across Multiple Zones)
+
+        -> Create Workstation
+
+    -> Create IAM User: eks 
+
+        -> Using eks user we will setup production cluster 
+
+    -> Workstation Setup 
+
+        -> Setup docker
+
+            wget -O get-docker.sh https://get.docker.com && sh get-docker.sh
+            docker
+            sudo usermod -aG docker ubuntu
+            newgrp docker
+
+
+        -> Setup Kubectl
+
+            kubectl 
+            curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
+            chmod +x kubectl
+            sudo mv kubectl /usr/local/bin/kubectl
+            kubectl
+            kubectl get pods
+
+        -> Connect Workstation With Cluster, To Deploy Applications On Production Cluster 
+
+            aws 
+            sudo apt -y update && sudo apt -y install awscli
+            aws 
+            aws eks list-clusters
+            aws configure
+            aws eks list-clusters
+            kubectl get services
+            cat /home/ubuntu/.kube/config
+            aws eks update-kubeconfig --name <cluster> --region <region-code>
+            aws eks update-kubeconfig --name lms --region us-east-2
+            cat /home/ubuntu/.kube/config
+            kubectl get services
+            kubectl get pods
+            kubectl get deployments
+
+    -> NOTE: Delete the Cluster Once LAB Is Done, if not charges Applicable
+
+    -> NOTE: Next Videos Of Jenkins, Ansible, Terraform, SRE Will be loaded in your LMS.
