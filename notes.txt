@@ -828,6 +828,12 @@
         -> NOTE: Later on we as DevOps Engineers will write Automated CI-CD Pipelines,
                 in which SCA is one of the checks / steps 
 
+            -> https://miro.medium.com/v2/resize:fit:700/1*JSnrNQJAnyt8A2OiANfLCA.png
+
+            -> https://miro.medium.com/v2/resize:fit:1400/1*imFXvmkKx572ctTPXTCVSQ.png
+
+            -> https://media.licdn.com/dms/image/v2/D4E12AQEw-WgeGTPoKw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1726133260230?e=2147483647&v=beta&t=9SVi1jiR2f_oDciJYKnvvVEXwbZVZeK8lnyqfxToNUI
+
     -> Earlier to implement "Version Control" Process we used "Git" Tool 
 
     -> Now to implement "Static Code Analysis" Process we use "SonarQube" Tool 
